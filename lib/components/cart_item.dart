@@ -1,7 +1,9 @@
-import 'package:klekt/models/cart.dart';
+import 'package:get/get.dart';
+import 'package:klekt/controllers/cart_controller.dart';
+// import 'package:klekt/models/cart.dart';
 import 'package:klekt/models/shoe.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 class CartItem extends StatefulWidget {
   final Shoe shoe;
@@ -12,9 +14,11 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
+  CartController cartController = Get.find();
   // remove shoe from cart
   void removeShoeFromCart() {
-    Provider.of<Cart>(context, listen: false).removeItemFromCart(widget.shoe);
+    // Provider.of<Cart>(context, listen: false).removeItemFromCart(widget.shoe);
+    cartController.removeFromCart(widget.shoe);
   }
 
   @override

@@ -1,40 +1,31 @@
+import 'package:get/get.dart';
 import 'package:klekt/components/buttom_nav_bar.dart';
-import 'package:klekt/pages/cart_page.dart';
-import 'package:klekt/pages/shop_page.dart';
+import 'package:klekt/controllers/cart_controller.dart';
+import 'package:klekt/controllers/navbar_controller.dart';
+import 'package:klekt/pages/cartx_page.dart';
 import 'package:flutter/material.dart';
+import 'package:klekt/pages/shopx_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
-  void navigateBottomBar (int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  final NavbarController navController = Get.put(NavbarController());
+  final CartController cartController = Get.put(CartController());
 
   // list of pages
   final List<Widget> _pages = [
     // shop page
-    const ShopPage(),
+    ShopXPage(),
 
     // cart page
-    const CartPage(),
+    CartXPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      bottomNavigationBar: MyBottomNavBar(
-        onTabChange: (index) => navigateBottomBar(index),
-      ),
+      bottomNavigationBar: MyBottomNavBar(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -96,7 +87,9 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: _pages[_selectedIndex],
+      body: Obx(() =>
+      _pages[navController.selectedIndex.toInt()],
+      )
     );
   }
 }

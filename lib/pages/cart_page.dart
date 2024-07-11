@@ -34,7 +34,7 @@ class CartPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomePage()
+                    builder: (context) => HomePage()
                   ));
                 },
                 child: Center(

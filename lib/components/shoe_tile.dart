@@ -22,7 +22,10 @@ class ShoeTile extends StatelessWidget {
           // shoe pic
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(shoe.imagePath),
+            child: Image.asset(shoe.imagePath,
+            width: 240,
+            height: 180,
+            ),
             
           ),
 
@@ -85,8 +88,6 @@ class ShoeTile extends StatelessWidget {
               ],
             ),
           )
-
-          // Add to cart
         ],
       ),
     );

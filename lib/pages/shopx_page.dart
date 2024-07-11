@@ -1,34 +1,27 @@
+import 'package:get/get.dart';
 import 'package:klekt/components/shoe_tile.dart';
 import 'package:klekt/constants.dart';
-import 'package:klekt/models/cart.dart';
+import 'package:klekt/controllers/cart_controller.dart';
 import 'package:klekt/models/shoe.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class ShopPage extends StatefulWidget {
-  const ShopPage({super.key});
+class ShopXPage extends StatelessWidget {
+  ShopXPage({super.key});
 
-  @override
-  State<ShopPage> createState() => _ShopPageState();
-}
+  final CartController cartController = Get.find();
 
-class _ShopPageState extends State<ShopPage> {
-  // add shoe to cart
   void addShoeToCart(Shoe shoe) {
-    Provider.of<Cart>(context, listen: false).addItemToCart(shoe);
+    cartController.addToCart(shoe);
 
     // alert the user, shoe successfully added
-    showDialog(
-        context: context,
-        builder: ((context) => const AlertDialog(
-              title: Text('Successfully added!'),
-              content: Text('Check your Cart.'),
-            )));
+    Get.dialog(const AlertDialog(
+      title: Text('Successfully added!'),
+      content: Text('Check your Cart.'),
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Cart>(builder: (context, cart, child) {
       return Scaffold(
           backgroundColor: Colors.grey[200],
           body: Column(
@@ -116,6 +109,5 @@ class _ShopPageState extends State<ShopPage> {
               )
             ],
           ));
-    });
-  }
+    }
 }

@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:klekt/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -48,8 +49,7 @@ class IntroPage extends StatelessWidget {
 
               // shop now btn
               GestureDetector(
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const HomePage())),
+                onTap: () => Get.to(() => HomePage()),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
