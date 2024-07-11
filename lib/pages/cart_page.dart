@@ -2,6 +2,7 @@ import 'package:klekt/components/cart_item.dart';
 import 'package:klekt/models/cart.dart';
 import 'package:klekt/models/shoe.dart';
 import 'package:flutter/material.dart';
+import 'package:klekt/pages/home_page.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
@@ -17,9 +18,9 @@ class CartPage extends StatelessWidget {
         child: Column(
           children: [
             // heading
-            const Text(
-              'My Cart',
-              style: TextStyle(
+            Text(
+              'My Cart (${cartItems.length})',
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
               ),
@@ -29,12 +30,24 @@ class CartPage extends StatelessWidget {
             const SizedBox(height: 20,),
         
             // cart items
-            cartItems.isEmpty ? const Center(
-              child: Text(
-                'No items in the cart!',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 18,
+            cartItems.isEmpty ? Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomePage()
+                  ));
+                },
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      'Add item to cart',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ) :
